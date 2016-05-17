@@ -22,7 +22,11 @@ cd tensorflow
 ################################################################################
 echo -e "\e[36m***Installing utilities*** \e[0m"
 sudo apt-get update
-sudo apt-get install unzip git-all pkg-config zip g++ zlib1g-dev
+sudo apt-get install unzip git-all pkg-config zip g++ zlib1g-dev swig 
+
+sudo pip freeze | grep protobuf
+sudo pip install -U protobuf==3.0.0b2
+sudo pip install asciitree
 
 ################################################################################
 # Install Java deps.
@@ -69,11 +73,10 @@ sudo echo "alias python=python2.7" >> ~/.bashrc
 source ~/.bashrc
 
 ################################################################################
-# Grab v0.8 TensorFlow from git.
+# Grab TensorFlow from git.
 ################################################################################
 echo -e "\e[36m***Cloning TensorFlow from GitHub*** \e[0m"
-git clone --recurse-submodules -b r0.8 https://github.com/tensorflow/tensorflow.git
-sed -i 's/kDefaultTotalBytesLimit = 64/kDefaultTotalBytesLimit = 128/' tensorflow/google/protobuf/src/google/protobuf/io/coded_stream.h
+git clone --recurse https://github.com/tensorflow.git
 
 ################################################################################
 # We need Numpy for this Tensor flow to work.
