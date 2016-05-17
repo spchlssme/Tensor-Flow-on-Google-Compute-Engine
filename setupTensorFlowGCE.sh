@@ -37,11 +37,11 @@ sudo apt-get install oracle-java8-installer
 # Install Bazel dep.
 ################################################################################
 echo -e "\e[36m***Installing Bazel*** \e[0m"
-wget https://goo.gl/W0Jztd -O bazel-0.2.2-installer-linux-x86_64.sh
+wget https://github.com/bazelbuild/bazel/releases/download/0.2.2/bazel-0.2.2-installer-linux-x86_64.sh
 chmod +x bazel-0.2.2-installer-linux-x86_64.sh
 sudo ./bazel-0.2.2-installer-linux-x86_64.sh --user
 rm bazel-0.2.2-installer-linux-x86_64.sh
-sudo chown $USER:$USER ~/.cache/bazel/
+sudo chown $USER:$USER ~/.bazel/
 sudo echo "PATH=\$PATH:\$HOME/bin" >> ~/.bashrc
 
 ################################################################################
