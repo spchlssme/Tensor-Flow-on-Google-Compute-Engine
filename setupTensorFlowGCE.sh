@@ -76,7 +76,8 @@ source ~/.bashrc
 # Grab TensorFlow from git.
 ################################################################################
 echo -e "\e[36m***Cloning TensorFlow from GitHub*** \e[0m"
-git clone --recurse https://github.com/tensorflow.git
+git clone --recurse-submodules -b r0.8 https://github.com/tensorflow/tensorflow.git
+sed -i 's/kDefaultTotalBytesLimit = 64/kDefaultTotalBytesLimit = 128/' tensorflow/google/protobuf/src/google/protobuf/io/coded_stream.h
 
 ################################################################################
 # We need Numpy for this Tensor flow to work.
