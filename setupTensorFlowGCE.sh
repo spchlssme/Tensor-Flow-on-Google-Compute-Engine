@@ -22,11 +22,7 @@ cd tensorflow
 ################################################################################
 echo -e "\e[36m***Installing utilities*** \e[0m"
 sudo apt-get update
-sudo apt-get install unzip git-all pkg-config zip g++ zlib1g-dev swig 
-
-sudo pip freeze | grep protobuf
-sudo pip install -U protobuf==3.0.0b2
-sudo pip install asciitree
+sudo apt-get install unzip git-all pkg-config zip g++ zlib1g-dev
 
 ################################################################################
 # Install Java deps.
@@ -41,12 +37,11 @@ sudo apt-get install oracle-java8-installer
 # Install Bazel dep.
 ################################################################################
 echo -e "\e[36m***Installing Bazel*** \e[0m"
-wget https://github.com/bazelbuild/bazel/releases/download/0.2.2/bazel-0.2.2-installer-linux-x86_64.sh
-chmod +x bazel-0.2.2-installer-linux-x86_64.sh
-sudo ./bazel-0.2.2-installer-linux-x86_64.sh --user
-rm bazel-0.2.2-installer-linux-x86_64.sh
-sudo chown $USER:$USER ~/.bazel/
-sudo echo "PATH=\$PATH:\$HOME/bin" >> ~/.bashrc
+wget https://goo.gl/OQ2ZCl -O bazel-installer-linux-x86_64.sh
+chmod +x bazel-installer-linux-x86_64.sh
+sudo ./bazel-installer-linux-x86_64.sh
+rm bazel-installer-linux-x86_64.sh
+sudo chown $USER:$USER ~/.cache/bazel/
 
 ################################################################################
 # Fetch Swig and Python deps.
@@ -61,19 +56,19 @@ libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
 # Fetch and install Python.
 ################################################################################
 echo -e "\e[36m***Installing Python*** \e[0m"
-wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz
-tar -xvf Python-2.7.10.tgz
-cd Python-2.7.10
+wget https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz
+tar -xvf Python-3.5.1.tgz
+cd Python-3.5.1
 ./configure
 make
 sudo make install
 cd ../
-rm Python-2.7.10.tgz
-sudo echo "alias python=python2.7" >> ~/.bashrc
+rm Python-3.5.1.tgz
+sudo echo "alias python=python3.5" >> ~/.bashrc
 source ~/.bashrc
 
 ################################################################################
-# Grab TensorFlow from git.
+# Grab v0.8 TensorFlow from git.
 ################################################################################
 echo -e "\e[36m***Cloning TensorFlow from GitHub*** \e[0m"
 git clone --recurse-submodules -b r0.8 https://github.com/tensorflow/tensorflow.git
